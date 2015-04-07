@@ -309,9 +309,7 @@
 
         'patterns': [
           {
-            'match': '\\G\\b[\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*'
-            '\G[\p{L}\p{Nl}$_]'
-            'name': 'variable.parameter.function.js'
+            'include': '#parameter'
           }
           {
             'include': '#strings'
@@ -323,6 +321,13 @@
       }
       {
         'include': '#comments'
+      }
+    ]
+  'parameter':
+    'patterns': [
+      {
+        'name': 'variable.parameter.function.js'
+        'match': '\\G\\b[\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*'
       }
     ]
   'methods':
@@ -397,6 +402,18 @@
         'patterns': [
           {
             'include': '#function-params'
+          }
+        ]
+      }
+      {
+        'name': 'meta.function.arrow.js'
+
+        'begin': '(?=[\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*\\s*=>)'
+        'end': '(?=\\s*=>)'
+
+        'patterns': [
+          {
+            'include': '#parameter'
           }
         ]
       }
